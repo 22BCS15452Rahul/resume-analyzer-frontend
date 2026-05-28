@@ -34,14 +34,24 @@ function App() {
   const [chatLoading, setChatLoading] = useState(false);
   const chatEndRef = useRef(null);
 
-  useEffect(() => {
-    getRedirectResult(auth).catch(console.log);
-    const unsub = onAuthStateChanged(auth, (u) => {
-      setUser(u);
-      if (u) loadHistory(u.uid);
+ useEffect(() => {
+  getRedirectResult(auth)
+    .then((result) => {
+      if (result?.user) {
+        setUser(result.user);
+        loadHistory(result.user.uid);
+      }
+    })
+    .catch((error) => {
+      console.log("Redirect error:", error.message);
     });
-    return unsub;
-  }, []);
+
+  const unsub = onAuthStateChanged(auth, (u) => {
+    setUser(u);
+    if (u) loadHistory(u.uid);
+  });
+  return unsub;
+}, []);
 
   useEffect(() => {
     chatEndRef.current?.scrollIntoView({ behavior: "smooth" });

@@ -1,10 +1,10 @@
 import { auth, googleProvider } from "./firebase";
-import { signInWithRedirect } from "firebase/auth";
+import { signInWithPopup } from "firebase/auth";
 
 function Login() {
   const handleGoogleLogin = async () => {
     try {
-      await signInWithRedirect(auth, googleProvider);
+      await signInWithPopup(auth, googleProvider);
     } catch (error) {
       console.log(error);
       alert("Login failed: " + error.message);

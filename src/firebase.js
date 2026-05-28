@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
   apiKey: "AIzaSyBACAiQLk-VGpxDi3SW_GTMhr-S-rMM8HA",
-  authDomain: "resume-analyzer-frontend-azure.vercel.app",
+  authDomain: "ai-resume-analyzer-65f15.firebaseapp.com",
   projectId: "ai-resume-analyzer-65f15",
   storageBucket: "ai-resume-analyzer-65f15.firebasestorage.app",
   messagingSenderId: "969698111600",

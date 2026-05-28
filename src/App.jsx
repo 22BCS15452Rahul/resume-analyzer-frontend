@@ -2,7 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import jsPDF from "jspdf";
 import { auth, db } from "./firebase";
-import { signOut, onAuthStateChanged } from "firebase/auth";
+import { signOut, onAuthStateChanged, getRedirectResult } from "firebase/auth";
 import { collection, addDoc, getDocs, query, where } from "firebase/firestore";
 import Login from "./Login";
 
@@ -35,6 +35,7 @@ function App() {
   const chatEndRef = useRef(null);
 
   useEffect(() => {
+    getRedirectResult(auth).catch(console.log);
     const unsub = onAuthStateChanged(auth, (u) => {
       setUser(u);
       if (u) loadHistory(u.uid);
